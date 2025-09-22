@@ -1,0 +1,13 @@
+<!-- filepath: c:\Users\Lucas\projetos\locacao_main\templates\cadastro_veiculos.html -->
+{% extends "base.html" %}
+{% block title %}Cadastro de Veículos{% endblock %}
+{% block content %}
+<h2>Cadastro de Veículos</h2>
+<form id="formVeiculo">
+    <label>Marca: <input type="text" name="marca" required></label><br>
+    <label>Modelo: <input type="text" name="modelo" required></label><br>
+    <label>Ano: <input type="number" name="ano" required></label><br>
+    <button type="submit">Cadastrar</button>
+</form>
+<div id="veiculosList"></div>
+{% endblock %}
