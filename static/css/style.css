@@ -1,0 +1,847 @@
+/* ==================== GERAL ==================== */
+
+:root {
+    --primary: #5a189a;
+    --primary-dark: #3c0f66;
+    --primary-light: #7b2cbf;
+    --primary-lighter: #9d4edd;
+    --accent: #ffd54f;
+    --text-dark: #1a1a1a;
+    --text-light: #ffffff;
+    --gray-light: #f8f9fa;
+    --gray: #6c757d;
+    --success: #28a745;
+    --error: #dc3545;
+    --info: #17a2b8;
+}
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: var(--gray-light);
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+h1,
+h2,
+h3 {
+    color: var(--primary);
+    margin-bottom: 1rem;
+}
+
+
+/* ==================== HEADER ==================== */
+
+header {
+    background: var(--primary);
+    color: var(--text-light);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 4rem;
+    box-shadow: 0 4px 12px rgba(90, 24, 154, 0.15);
+    position: relative;
+    z-index: 1000;
+}
+
+header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--accent);
+    opacity: 0.8;
+}
+
+header .logo {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--text-light);
+    text-decoration: none;
+    letter-spacing: -0.5px;
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+header .logo:hover {
+    transform: scale(1.05);
+}
+
+nav {
+    display: flex;
+    align-items: center;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    margin: 0;
+    padding: 0;
+}
+
+nav a {
+    color: var(--text-light);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--accent);
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+nav a:hover {
+    color: var(--accent);
+}
+
+nav a:hover::after {
+    width: calc(100% - 2rem);
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.user-info img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+}
+
+
+/* ==================== LOGIN ==================== */
+
+.login-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #5a189a;
+}
+
+.login-container {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    width: 300px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.login-container h2 {
+    margin-bottom: 20px;
+}
+
+.login-container input {
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #dcdcdc;
+    border-radius: 5px;
+}
+
+.btn {
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: var(--text-light);
+    width: 100%;
+}
+
+.btn-primary:hover {
+    background: var(--primary-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(90, 24, 154, 0.2);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+.btn-secondary {
+    background: var(--primary-lighter);
+    color: var(--text-light);
+}
+
+.btn-secondary:hover {
+    background: var(--primary-light);
+    transform: translateY(-1px);
+}
+
+.login-container a {
+    color: var(--primary);
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.login-container a:hover {
+    color: var(--primary-light);
+}
+
+
+/* ==================== HOME ==================== */
+
+.hero-section {
+    background: linear-gradient(rgba(90, 24, 154, 0.9), rgba(90, 24, 154, 0.7)), url('https://img.freepik.com/fotos-premium/carros-novos-para-venda_41969-316.jpg');
+    background-size: cover;
+    background-position: center;
+    padding: 80px 20px;
+    color: white;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.hero-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.hero-content h1 {
+    font-size: 2.5em;
+    margin-bottom: 30px;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.cards {
+    padding: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.search-box {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 25px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.search-inputs {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.search-inputs label {
+    flex: 1;
+    min-width: 200px;
+}
+
+.search-inputs input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-top: 5px;
+}
+
+.btn-secondary {
+    background: #6c757d;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-secondary:hover {
+    background: #5a6268;
+}
+
+.cards h2 {
+    margin-bottom: 20px;
+}
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.card {
+    background: var(--text-light);
+    padding: 0;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(90, 24, 154, 0.1);
+    text-align: center;
+    transition: all 0.4s ease;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid rgba(90, 24, 154, 0.1);
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: var(--primary);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.card:hover::before {
+    transform: scaleX(1);
+}
+
+.card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-bottom: 1px solid rgba(90, 24, 154, 0.1);
+}
+
+.card-content {
+    padding: 24px;
+}
+
+.card h3 {
+    margin: 0 0 12px 0;
+    color: var(--primary);
+    font-size: 1.4em;
+    font-weight: 600;
+}
+
+.card p {
+    margin: 8px 0;
+    color: var(--gray);
+    font-size: 0.95em;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(90, 24, 154, 0.15);
+}
+
+.card .btn-primary {
+    margin-top: 16px;
+    width: auto;
+    min-width: 120px;
+}
+
+.status {
+    display: inline-flex;
+    align-items: center;
+    margin: 8px 0;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.9em;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.status::before {
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 8px;
+}
+
+.status.disponivel {
+    background: rgba(40, 167, 69, 0.1);
+    color: var(--success);
+}
+
+.status.disponivel::before {
+    background: var(--success);
+}
+
+.status.alugado {
+    background: rgba(220, 53, 69, 0.1);
+    color: var(--error);
+}
+
+.status.alugado::before {
+    background: var(--error);
+}
+
+
+/* ==================== RESERVAS PAGE ==================== */
+
+.reservas-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: var(--text-light);
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(90, 24, 154, 0.1);
+    border: 1px solid rgba(90, 24, 154, 0.05);
+}
+
+.reservas-container h2 {
+    color: var(--primary);
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+    text-align: center;
+    position: relative;
+    padding-bottom: 1rem;
+}
+
+.reservas-container h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background: var(--primary);
+    border-radius: 2px;
+}
+
+.table-responsive {
+    overflow-x: auto;
+    margin-top: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(90, 24, 154, 0.05);
+}
+
+.table-reservas {
+    width: 100%;
+    background: var(--text-light);
+    border-radius: 12px;
+    border-collapse: separate;
+    border-spacing: 0;
+    overflow: hidden;
+}
+
+.table-reservas th {
+    background: var(--primary);
+    color: var(--text-light);
+    padding: 1rem 1.5rem;
+    text-align: left;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+}
+
+.table-reservas th:first-child {
+    border-top-left-radius: 12px;
+}
+
+.table-reservas th:last-child {
+    border-top-right-radius: 12px;
+}
+
+.table-reservas td {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid rgba(90, 24, 154, 0.1);
+    vertical-align: middle;
+    color: var(--text-dark);
+    font-size: 0.95rem;
+}
+
+.table-reservas tbody tr:hover {
+    background: rgba(90, 24, 154, 0.02);
+}
+
+.table-reservas tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.table-reservas tbody tr:last-child td:first-child {
+    border-bottom-left-radius: 12px;
+}
+
+.table-reservas tbody tr:last-child td:last-child {
+    border-bottom-right-radius: 12px;
+}
+
+.table-reservas .btn-primary {
+    margin: 0;
+    padding: 8px 16px;
+}
+
+.status-badge {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 0.9em;
+    display: inline-block;
+}
+
+.status-badge.ativa {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.status-badge.finalizada {
+    background-color: #808080;
+    color: white;
+}
+
+.info-devolucao {
+    color: #666;
+    font-size: 0.9em;
+    text-align: center;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.status-badge {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.status-badge.ativa {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.status-badge.finalizada {
+    background-color: #808080;
+    color: white;
+}
+
+.info-devolucao {
+    color: #666;
+    font-size: 0.9em;
+    margin-top: 4px;
+}
+
+
+/* Modal de Devolução */
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 8px;
+    position: relative;
+}
+
+.close {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: black;
+}
+
+.text-center {
+    text-align: center;
+}
+
+
+/* ==================== PROFILE PAGE ==================== */
+
+.profile-container,
+.vehicle-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.profile-form,
+.vehicle-form {
+    display: grid;
+    gap: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.vehicles-list {
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.vehicle-card {
+    background: #fff;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.vehicle-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.mensagem {
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 4px;
+    display: none;
+    text-align: center;
+    font-weight: bold;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.mensagem.sucesso {
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+    display: block;
+}
+
+.mensagem.erro {
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* ==================== CONTACT PAGE ==================== */
+
+.contact-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--primary);
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 2px solid rgba(90, 24, 154, 0.1);
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: var(--text-light);
+    color: var(--text-dark);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-light);
+    box-shadow: 0 0 0 4px rgba(90, 24, 154, 0.1);
+}
+
+.form-group input:hover,
+.form-group textarea:hover {
+    border-color: var(--primary);
+}
+
+.form-group textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: var(--gray);
+    opacity: 0.7;
+}
+
+.form-group textarea {
+    height: 150px;
+    resize: vertical;
+}
+
+.contact-info {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #ddd;
+}
+
+.contact-info h3 {
+    margin-bottom: 15px;
+}
+
+
+/* ==================== FOOTER ==================== */
+
+footer {
+    text-align: center;
+    padding: 15px;
+    background: #000000;
+    color: #ffffff;
+    margin-top: 40px;
+}
+
+
+/* ==================== TOASTS ==================== */
+
+.toast-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    pointer-events: none;
+}
+
+.toast {
+    min-width: 280px;
+    max-width: 400px;
+    padding: 16px 20px;
+    border-radius: 12px;
+    color: var(--text-light);
+    background: var(--primary);
+    box-shadow: 0 8px 16px rgba(90, 24, 154, 0.2);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    animation: slideIn 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    border-left: 4px solid var(--primary-dark);
+}
+
+.toast::before {
+    content: '';
+    width: 20px;
+    height: 20px;
+    margin-right: 12px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.toast.success {
+    background: var(--success);
+    border-color: #1e7e34;
+}
+
+.toast.success::before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/%3E%3C/svg%3E");
+}
+
+.toast.error {
+    background: var(--error);
+    border-color: #bd2130;
+}
+
+.toast.error::before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z'/%3E%3C/svg%3E");
+}
+
+.toast.info {
+    background: var(--info);
+    border-color: #117a8b;
+}
+
+.toast.info::before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z'/%3E%3C/svg%3E");
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}

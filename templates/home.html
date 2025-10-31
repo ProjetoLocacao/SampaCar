@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}Home - LocaCar{% endblock %}
+
+{% block content %}
+<div class="hero-section">
+    <div class="hero-content">
+        <h1>Encontre o carro perfeito para você</h1>
+        <div class="search-box">
+            <div class="search-inputs">
+                <label>Buscar por marca: <input id="searchMarca" placeholder="Ex: Fiat"></label>
+                <label>Buscar por modelo: <input id="searchModelo" placeholder="Ex: Onix"></label>
+                <button id="btnSearch" class="btn-primary">Buscar</button>
+                <button id="btnClear" class="btn-secondary">Limpar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="cards destaque">
+    <h2>Carros Disponíveis</h2>
+    <div class="card-grid" id="destaqueGrid">
+        <!-- Cards serão preenchidos via JavaScript -->
+    </div>
+</section>
+
+<section class="cards marcas">
+    <h2>Encontre seu veículo por marca</h2>
+    <div class="card-grid" id="marcasGrid">
+        <div class="card">Toyota</div>
+        <div class="card">Fiat</div>
+        <div class="card">Volkswagen</div>
+        <div class="card">Chevrolet</div>
+    </div>
+</section>
+
+<section class="cards modelos">
+    <h2>Modelos mais buscados</h2>
+    <div class="card-grid" id="modelosGrid">
+        <div class="card">Onix</div>
+        <div class="card">HB20</div>
+        <div class="card">Corolla</div>
+        <div class="card">Argo</div>
+    </div>
+</section>
+{% endblock %}

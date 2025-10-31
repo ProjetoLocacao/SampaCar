@@ -1,0 +1,287 @@
+{% extends "base.html" %}
+{% block title %}Minhas Reservas{% endblock %}
+
+{% block content %}
+<div class="reservas-container">
+    <h2>Minhas Reservas</h2>
+
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Veículo</th>
+                    <th>Data Reserva</th>
+                    <th>Data Devolucão</th>
+                    <th>Duração</th>
+                    <th>Condição</th>
+                    <th>Status</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody id="reservasArea">
+                <tr>
+                    <td colspan="8" class="text-center">Carregando reservas...</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Modal de Devolução -->
+    <div id="modalDevolucao" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Devolução do Veículo</h3>
+            <form id="formDevolucao">
+                <div class="form-group">
+                    <label for="dataDevolucao">Data de Devolução:</label>
+                    <input type="date" id="dataDevolucao" required>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn-primary">Confirmar Devolução</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<style>
+.reservas-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+.table-responsive {
+    overflow-x: auto;
+    margin-top: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table th,
+.table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.table th {
+    background: #f8f9fa;
+    font-weight: 600;
+}
+
+.vehicle-image {
+    width: 120px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.status-badge {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.status-badge.ativa {
+    background: #e3f2fd;
+    color: #1976d2;
+}
+
+.status-badge.finalizada {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+.info-devolucao {
+    color: #666;
+    font-style: italic;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+    position: relative;
+    background-color: #fff;
+    margin: 15% auto;
+    padding: 30px;
+    border-radius: 8px;
+    max-width: 500px;
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from { transform: translateY(-20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.close {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #666;
+}
+
+.close:hover {
+    color: #000;
+}
+
+.text-muted {
+    color: #666;
+    font-size: 0.9em;
+}
+
+.text-center {
+    text-align: center;
+}
+</style>
+
+<script>
+let reservaAtual = null;
+
+function loadReservas() {
+    fetch('/api/minhas_reservas')
+    .then(response => response.json())
+    .then(data => {
+        const tbody = document.getElementById('reservasArea');
+        tbody.innerHTML = '';
+        
+        if (data.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="8" class="text-center">Nenhuma reserva encontrada</td></tr>';
+            return;
+        }
+        
+        data.forEach(item => {
+            const reserva = item.reserva;
+            const veiculo = item.veiculo;
+
+            if (!veiculo) {
+                tbody.innerHTML += '<tr><td colspan="8">Veículo removido do inventário</td></tr>';
+                return;
+            }
+
+            const statusClass = reserva.status === 'finalizada' ? 'finalizada' : 'ativa';
+            const statusText = reserva.status === 'finalizada' ? 'Finalizada' : 'Em andamento';
+            
+            tbody.innerHTML += `
+                <tr>
+                    <td>${veiculo.marca} ${veiculo.modelo}<br><small class="text-muted">${veiculo.placa || '-'}</small></td>
+                    <td>
+                        <img src="${veiculo.foto || '/static/img/no-image.png'}" 
+                             alt="${veiculo.marca} ${veiculo.modelo}"
+                             class="vehicle-image"
+                             onerror="this.src='/static/img/no-image.png'">
+                    </td>
+                    <td>${formatarData(reserva.data_reserva)}</td>
+                    <td>${reserva.status === 'finalizada' ? formatarData(reserva.data_devolucao) : '-'}</td>
+                    <td>${reserva.dias} dia(s)</td>
+                    <td>${veiculo.condicao || '-'}</td>
+                    <td><span class="status-badge ${statusClass}">${statusText}</span></td>
+                    <td>
+                        ${reserva.status !== 'finalizada' ? 
+                            `<button onclick="iniciarDevolucao(${reserva.id})" class="btn-primary">Devolver</button>` : 
+                            `<div class="info-devolucao">Devolvido</div>`}
+                    </td>
+                </tr>
+            `;
+        });
+    })
+    .catch(error => {
+        console.error('Erro:', error);
+        document.getElementById('reservasArea').innerHTML = 
+            '<tr><td colspan="8" class="text-center">Erro ao carregar reservas</td></tr>';
+    });
+}
+
+function iniciarDevolucao(id) {
+    reservaAtual = id;
+    const modal = document.getElementById('modalDevolucao');
+    document.getElementById('dataDevolucao').valueAsDate = new Date();
+    modal.style.display = 'block';
+}
+
+function formatarData(data) {
+    if (!data) return '-';
+    return new Date(data).toLocaleDateString('pt-BR');
+}
+
+// Inicialização da página
+document.addEventListener('DOMContentLoaded', function() {
+    // Carregar reservas inicialmente
+    loadReservas();
+
+    // Setup modal
+    const modal = document.getElementById('modalDevolucao');
+    const span = modal.querySelector('.close');
+    
+    span.onclick = function() {
+        modal.style.display = 'none';
+    }
+    
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = 'none';
+        }
+    }
+    
+    // Configurar o formulário de devolução
+    document.getElementById('formDevolucao').onsubmit = function(e) {
+        e.preventDefault();
+        
+        if (!reservaAtual) {
+            alert('Erro: Nenhuma reserva selecionada');
+            return;
+        }
+
+        const dataDevolucao = document.getElementById('dataDevolucao').value;
+        
+        fetch(`/api/reservas/${reservaAtual}/devolver`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            credentials: 'same-origin',
+            body: JSON.stringify({
+                data_devolucao: dataDevolucao
+            })
+        })
+        .then(response => {
+            if (!response.ok) {
+                return response.json().then(err => {
+                    throw new Error(err.error || 'Erro ao devolver veículo');
+                });
+            }
+            return response.json();
+        })
+        .then(data => {
+            document.getElementById('modalDevolucao').style.display = 'none';
+            alert('Veículo devolvido com sucesso!');
+            loadReservas(); // Recarrega apenas a tabela ao invés da página toda
+        })
+        .catch(error => {
+            alert(error.message);
+            console.error('Erro ao devolver:', error);
+        });
+    };
+});
+</script>
+{% endblock %}

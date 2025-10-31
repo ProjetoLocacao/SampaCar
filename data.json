@@ -1,0 +1,509 @@
+{
+  "usuarios": [
+    {
+      "id": 1,
+      "nome": "Admin",
+      "email": "admin@locacar.com",
+      "senha": "admin123",
+      "telefone": "11999999999",
+      "tipo": "admin"
+    },
+    {
+      "id": 2,
+      "nome": "lucas novais",
+      "email": "lucasoliveiragamer640@gmail.com",
+      "senha": "patata45@",
+      "telefone": "11945112538",
+      "tipo": "usuario"
+    },
+    {
+      "id": 3,
+      "nome": "luis carlos",
+      "email": "}@gmail.com",
+      "senha": "carlinhos123",
+      "telefone": "119999999",
+      "tipo": "usuario"
+    },
+    {
+      "id": 4,
+      "nome": "samuel silva",
+      "email": "samuel@gmai.com",
+      "senha": "samuel123",
+      "telefone": "11945112538",
+      "tipo": "usuario"
+    }
+  ],
+  "veiculos": [
+    {
+      "id": 1,
+      "marca": "Fiat",
+      "modelo": "Uno",
+      "ano": 2020,
+      "status": "alugado",
+      "placa": "ABC1234"
+    },
+    {
+      "id": 2,
+      "marca": "Chevrolet",
+      "modelo": "Onix",
+      "ano": 2021,
+      "status": "disponível",
+      "placa": "DEF5678"
+    },
+    {
+      "id": 3,
+      "marca": "Hyundai",
+      "modelo": "HB20",
+      "ano": 2019,
+      "status": "disponível",
+      "placa": "GHI9012"
+    },
+    {
+      "id": 4,
+      "marca": "Toyota",
+      "modelo": "Corolla",
+      "ano": 2022,
+      "status": "disponível",
+      "placa": "JKL3456"
+    },
+    {
+      "id": 5,
+      "marca": "Volkswagen",
+      "modelo": "Gol",
+      "ano": 2018,
+      "status": "disponível",
+      "placa": "MNO7890"
+    },
+    {
+      "id": 6,
+      "marca": "Jeep",
+      "modelo": "Renegade",
+      "ano": 2021,
+      "status": "disponível",
+      "placa": "PQR1234"
+    },
+    {
+      "marca": "fiat",
+      "modelo": "onix",
+      "ano": 2012,
+      "placa": "ABC1235",
+      "preco_diaria": 1000,
+      "foto": "https://revistacarro.com.br/wp-content/uploads/2018/05/mercedes_benz_classe_a_style.jpg",
+      "condicao": "semi-novo",
+      "id": 8,
+      "status": "disponível",
+      "owner_id": 4
+    }
+  ],
+  "reservas": [
+    {
+      "id": 1,
+      "veiculo_id": 1,
+      "usuario_id": 1,
+      "cliente": "Admin",
+      "data_reserva": "2025-10-30",
+      "dias": 7,
+      "status": "finalizada",
+      "data_devolucao": "2025-10-30"
+    },
+    {
+      "id": 2,
+      "veiculo_id": 2,
+      "usuario_id": 1,
+      "cliente": "aa",
+      "data_reserva": "2025-10-30",
+      "dias": 2,
+      "status": "finalizada",
+      "data_devolucao": "2025-10-30"
+    },
+    {
+      "id": 3,
+      "veiculo_id": 1,
+      "usuario_id": 1,
+      "cliente": "aa",
+      "data_reserva": "2025-10-30",
+      "dias": 2,
+      "status": "finalizada",
+      "data_devolucao": "2025-10-30"
+    },
+    {
+      "id": 4,
+      "veiculo_id": 1,
+      "usuario_id": 1,
+      "cliente": "aa",
+      "data_reserva": "2025-10-30",
+      "dias": 1,
+      "status": "finalizada",
+      "data_devolucao": "2025-10-30"
+    },
+    {
+      "id": 5,
+      "veiculo_id": 2,
+      "usuario_id": 1,
+      "cliente": "aa",
+      "data_reserva": "2025-10-30",
+      "dias": 5,
+      "status": "finalizada",
+      "data_devolucao": "2025-10-30",
+      "historico": {
+        "data_aluguel": "2025-10-30",
+        "data_devolucao": "2025-10-30",
+        "dias_alugados": 5,
+        "condicao_veiculo": ""
+      }
+    },
+    {
+      "id": 6,
+      "veiculo_id": 3,
+      "usuario_id": 1,
+      "cliente": "aa",
+      "data_reserva": "2025-10-30",
+      "dias": 5,
+      "status": "finalizada",
+      "data_devolucao": "2025-10-30",
+      "historico": {
+        "data_aluguel": "2025-10-30",
+        "data_devolucao": "2025-10-30",
+        "dias_alugados": 5,
+        "condicao_veiculo": ""
+      }
+    },
+    {
+      "id": 7,
+      "veiculo_id": 1,
+      "usuario_id": 1,
+      "cliente": "aa",
+      "data_reserva": "2025-10-30",
+      "dias": 1,
+      "status": "finalizada",
+      "data_devolucao": "2025-10-30",
+      "historico": {
+        "data_aluguel": "2025-10-30",
+        "data_devolucao": "2025-10-30",
+        "dias_alugados": 1,
+        "condicao_veiculo": ""
+      }
+    },
+    {
+      "id": 8,
+      "veiculo_id": 1,
+      "usuario_id": 1,
+      "cliente": "aa",
+      "data_reserva": "2025-10-30",
+      "dias": 11,
+      "status": "finalizada",
+      "data_devolucao": "2025-10-30",
+      "historico": {
+        "data_aluguel": "2025-10-30",
+        "data_devolucao": "2025-10-30",
+        "dias_alugados": 11,
+        "condicao_veiculo": ""
+      }
+    },
+    {
+      "id": 9,
+      "veiculo_id": 1,
+      "usuario_id": 1,
+      "cliente": "aa",
+      "data_reserva": "2025-10-30",
+      "dias": 1,
+      "status": "finalizada",
+      "data_devolucao": "2025-10-30",
+      "historico": {
+        "data_aluguel": "2025-10-30",
+        "data_devolucao": "2025-10-30",
+        "dias_alugados": 1,
+        "condicao_veiculo": ""
+      }
+    },
+    {
+      "id": 10,
+      "veiculo_id": 1,
+      "usuario_id": 1,
+      "cliente": "aa",
+      "data_reserva": "2025-10-30",
+      "dias": 1,
+      "status": "finalizada",
+      "data_devolucao": "2025-10-30",
+      "historico": {
+        "data_aluguel": "2025-10-30",
+        "data_devolucao": "2025-10-30",
+        "dias_alugados": 1,
+        "condicao_veiculo": ""
+      }
+    },
+    {
+      "id": 11,
+      "veiculo_id": 4,
+      "usuario_id": 1,
+      "cliente": "aa",
+      "data_reserva": "2025-10-30",
+      "dias": 1,
+      "status": "finalizada",
+      "data_devolucao": "2025-10-30",
+      "historico": {
+        "data_aluguel": "2025-10-30",
+        "data_devolucao": "2025-10-30",
+        "dias_alugados": 1,
+        "condicao_veiculo": ""
+      }
+    },
+    {
+      "id": 12,
+      "veiculo_id": 1,
+      "usuario_id": 1,
+      "cliente": "aa",
+      "data_reserva": "2025-10-30",
+      "dias": 1,
+      "status": "finalizada",
+      "data_devolucao": "2025-10-30",
+      "historico": {
+        "data_aluguel": "2025-10-30",
+        "data_devolucao": "2025-10-30",
+        "dias_alugados": 1,
+        "condicao_veiculo": ""
+      }
+    },
+    {
+      "id": 13,
+      "veiculo_id": 1,
+      "usuario_id": 1,
+      "cliente": "aa",
+      "data_reserva": "2025-10-30",
+      "dias": 10,
+      "status": "finalizada",
+      "data_devolucao": "2025-10-30",
+      "historico": {
+        "data_aluguel": "2025-10-30",
+        "data_devolucao": "2025-10-30",
+        "dias_alugados": 10,
+        "condicao_veiculo": ""
+      }
+    },
+    {
+      "id": 14,
+      "veiculo_id": 9,
+      "usuario_id": 1,
+      "cliente": "aa",
+      "data_reserva": "2025-10-30",
+      "dias": 1,
+      "status": "ativa"
+    },
+    {
+      "id": 15,
+      "veiculo_id": 1,
+      "usuario_id": 1,
+      "cliente": "aa",
+      "data_reserva": "2025-10-30",
+      "dias": 1,
+      "status": "finalizada",
+      "data_devolucao": "2025-10-30",
+      "historico": {
+        "data_aluguel": "2025-10-30",
+        "data_devolucao": "2025-10-30",
+        "dias_alugados": 1,
+        "condicao_veiculo": ""
+      }
+    },
+    {
+      "id": 16,
+      "veiculo_id": 8,
+      "usuario_id": 1,
+      "cliente": "aa",
+      "data_reserva": "2025-10-30",
+      "dias": 1,
+      "status": "finalizada",
+      "data_devolucao": "2025-10-31",
+      "historico": {
+        "data_aluguel": "2025-10-30",
+        "data_devolucao": "2025-10-31",
+        "dias_alugados": 1,
+        "condicao_veiculo": "usado"
+      }
+    },
+    {
+      "id": 17,
+      "veiculo_id": 1,
+      "usuario_id": 1,
+      "cliente": "aa",
+      "data_reserva": "2025-10-31",
+      "dias": 1,
+      "status": "finalizada",
+      "data_devolucao": "2025-10-31",
+      "historico": {
+        "data_aluguel": "2025-10-31",
+        "data_devolucao": "2025-10-31",
+        "dias_alugados": 1,
+        "condicao_veiculo": ""
+      }
+    },
+    {
+      "id": 18,
+      "veiculo_id": 8,
+      "usuario_id": 1,
+      "cliente": "aa",
+      "data_reserva": "2025-10-31",
+      "dias": 100,
+      "status": "ativa"
+    },
+    {
+      "id": 19,
+      "veiculo_id": 1,
+      "usuario_id": 1,
+      "cliente": "aa",
+      "data_reserva": "2025-10-31",
+      "dias": 1,
+      "status": "finalizada",
+      "data_devolucao": "2025-10-31",
+      "historico": {
+        "data_aluguel": "2025-10-31",
+        "data_devolucao": "2025-10-31",
+        "dias_alugados": 1,
+        "condicao_veiculo": ""
+      }
+    },
+    {
+      "id": 20,
+      "veiculo_id": 5,
+      "usuario_id": 3,
+      "cliente": "aa",
+      "data_reserva": "2025-10-31",
+      "dias": 1,
+      "status": "finalizada",
+      "data_devolucao": "2025-10-31",
+      "historico": {
+        "data_aluguel": "2025-10-31",
+        "data_devolucao": "2025-10-31",
+        "dias_alugados": 1,
+        "condicao_veiculo": ""
+      }
+    },
+    {
+      "id": 21,
+      "veiculo_id": 7,
+      "usuario_id": 2,
+      "cliente": "aa",
+      "data_reserva": "2025-10-31",
+      "dias": 1,
+      "status": "finalizada",
+      "data_devolucao": "2025-10-31",
+      "historico": {
+        "data_aluguel": "2025-10-31",
+        "data_devolucao": "2025-10-31",
+        "dias_alugados": 1,
+        "condicao_veiculo": "novo"
+      }
+    },
+    {
+      "id": 22,
+      "veiculo_id": 1,
+      "usuario_id": 2,
+      "cliente": "aa",
+      "data_reserva": "2025-10-31",
+      "dias": 1,
+      "status": "finalizada",
+      "data_devolucao": "2025-10-31",
+      "historico": {
+        "data_aluguel": "2025-10-31",
+        "data_devolucao": "2025-10-31",
+        "dias_alugados": 1,
+        "condicao_veiculo": ""
+      }
+    },
+    {
+      "id": 23,
+      "veiculo_id": 2,
+      "usuario_id": 2,
+      "cliente": "aa",
+      "data_reserva": "2025-10-31",
+      "dias": 1,
+      "status": "finalizada",
+      "data_devolucao": "2025-10-31",
+      "historico": {
+        "data_aluguel": "2025-10-31",
+        "data_devolucao": "2025-10-31",
+        "dias_alugados": 1,
+        "condicao_veiculo": ""
+      }
+    },
+    {
+      "id": 24,
+      "veiculo_id": 1,
+      "usuario_id": 2,
+      "cliente": "aa",
+      "data_reserva": "2025-10-31",
+      "dias": 1,
+      "status": "finalizada",
+      "data_devolucao": "2025-11-01",
+      "historico": {
+        "data_aluguel": "2025-10-31",
+        "data_devolucao": "2025-11-01",
+        "dias_alugados": 1,
+        "condicao_veiculo": ""
+      }
+    },
+    {
+      "id": 25,
+      "veiculo_id": 7,
+      "usuario_id": 3,
+      "cliente": "aa",
+      "data_reserva": "2025-10-31",
+      "dias": 1,
+      "status": "finalizada",
+      "data_devolucao": "2025-10-31",
+      "historico": {
+        "data_aluguel": "2025-10-31",
+        "data_devolucao": "2025-10-31",
+        "dias_alugados": 1,
+        "condicao_veiculo": "novo"
+      }
+    },
+    {
+      "id": 26,
+      "veiculo_id": 7,
+      "usuario_id": 4,
+      "cliente": "aa",
+      "data_reserva": "2025-10-31",
+      "dias": 1,
+      "status": "finalizada",
+      "data_devolucao": "2025-10-31",
+      "historico": {
+        "data_aluguel": "2025-10-31",
+        "data_devolucao": "2025-10-31",
+        "dias_alugados": 1,
+        "condicao_veiculo": "novo"
+      }
+    },
+    {
+      "id": 27,
+      "veiculo_id": 7,
+      "usuario_id": 4,
+      "cliente": "aa",
+      "data_reserva": "2025-10-31",
+      "dias": 1,
+      "status": "finalizada",
+      "data_devolucao": "2025-10-31",
+      "historico": {
+        "data_aluguel": "2025-10-31",
+        "data_devolucao": "2025-10-31",
+        "dias_alugados": 1,
+        "condicao_veiculo": "novo"
+      }
+    },
+    {
+      "id": 28,
+      "veiculo_id": 1,
+      "usuario_id": 2,
+      "cliente": "aa",
+      "data_reserva": "2025-10-31",
+      "dias": 1,
+      "status": "ativa"
+    }
+  ],
+  "perfil": {
+    "nome": "aa",
+    "email": "lucasoliveiragamer640@gmail.com",
+    "telefone": "11945112538",
+    "endereco": ""
+  }
+}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}LocaCar{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <!-- Cabeçalho -->
+    <header>
+        <h1 class="logo">LocaCar</h1>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('cadastro_veiculos') }}">Veículos</a></li>
+                <li><a href="{{ url_for('minhas_reservas') }}">Minhas Reservas</a></li>
+                <li><a href="{{ url_for('painel_frota') }}">Painel da Frota</a></li>
+                <li><a href="{{ url_for('contato') }}">Contato</a></li>
+                <li><a href="{{ url_for('sobre') }}">Sobre</a></li>
+                <li><a href="{{ url_for('faq') }}">Perguntas Frequentes</a></li>
+                <li><a href="{{ url_for('perfil') }}">Perfil</a></li>
+            </ul>
+        </nav>
+        <div class="user-info">
+            {% if session.usuario_nome %}
+                <span id="username">Olá, {{ session.usuario_nome }}</span>
+                <a href="{{ url_for('logout') }}" class="btn-logout">Sair</a>
+            {% else %}
+                <a href="{{ url_for('login') }}" class="btn-login">Entrar</a>
+            {% endif %}
+        </div>
+    </header>
+
+    <!-- Conteúdo dinâmico -->
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Rodapé -->
+    <footer>
+        <p>© 2025 LocaCar - Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        window.CURRENT_USER = {
+            id: {{ session.get('usuario_id') if session.get('usuario_id') else 'null' }},
+            is_admin: {{ 'true' if session.get('usuario_tipo') == 'admin' else 'false' }}
+        };
+    </script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

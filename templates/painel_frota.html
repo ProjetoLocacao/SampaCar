@@ -1,0 +1,153 @@
+{% extends "base.html" %}
+{% block title %}Painel da Frota{% endblock %}
+{% block content %}
+
+{% if is_admin %}
+<div class="painel-container">
+    <h2>Painel da Frota</h2>
+    
+    <div class="table-responsive">
+        <table id="tabelaFrota" class="table-frota">
+            <thead>
+                <tr>
+                    <th>Marca</th>
+                    <th>Modelo</th>
+                    <th>Ano</th>
+                    <th>Data Reserva</th>
+                    <th>Dias</th>
+                    <th>Placa</th>
+                    <th>Status</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Linhas geradas pelo JS -->
+            </tbody>
+        </table>
+    </div>
+</div>
+{% else %}
+<div class="access-denied-container">
+    <div class="access-denied-content">
+        <h2>Acesso Restrito</h2>
+        <p>Desculpe, esta área é reservada apenas para administradores.</p>
+        <a href="{{ url_for('home') }}" class="btn btn-primary">Voltar para Home</a>
+    </div>
+</div>
+
+<style>
+.access-denied-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh;
+    padding: 2rem;
+}
+
+.access-denied-content {
+    text-align: center;
+    background: white;
+    padding: 3rem;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(90, 24, 154, 0.1);
+    border: 1px solid rgba(90, 24, 154, 0.1);
+    max-width: 500px;
+}
+
+.access-denied-content h2 {
+    color: var(--primary);
+    margin-bottom: 1rem;
+}
+
+.access-denied-content p {
+    color: var(--gray);
+    margin-bottom: 2rem;
+}
+
+.access-denied-content .btn {
+    display: inline-block;
+    min-width: 200px;
+}
+
+/* Simple toast styles */
+.toast {
+    background: #ffefef;
+    border: 1px solid #ffb3b3;
+    padding: 12px 16px;
+    border-radius: 8px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    color: #611111;
+    font-weight: 600;
+}
+
+.toast-body { margin: 0; }
+</style>
+
+<script>
+// Tenta exibir o toast usando o helper global showToast (definido em static/js/script.js).
+// Faz retries por um curto período para garantir que, mesmo que o arquivo seja carregado
+// depois, a notificação ainda apareça. Se não for possível, exibe um fallback.
+(function() {
+    const mensagem = 'Acesso negado: apenas administradores podem acessar o painel da frota.';
+    let attempts = 0;
+    const maxAttempts = 15; // tentativas (200ms cada) ~3s
+
+    function fallback() {
+        const msg = document.createElement('div');
+        msg.textContent = mensagem;
+        msg.style.position = 'fixed';
+        msg.style.top = '20px';
+        msg.style.right = '20px';
+        msg.style.background = '#dc3545';
+        msg.style.color = '#fff';
+        msg.style.padding = '10px 14px';
+        msg.style.borderRadius = '6px';
+        msg.style.zIndex = 9999;
+        document.body.appendChild(msg);
+        setTimeout(() => msg.remove(), 3500);
+    }
+
+    function tryShow() {
+        try {
+            if (typeof window.showToast === 'function') {
+                window.showToast('erro', mensagem);
+                return;
+            }
+        } catch (e) {
+            console.warn('Erro verificando showToast:', e);
+        }
+
+        attempts++;
+        if (attempts < maxAttempts) {
+            setTimeout(tryShow, 200);
+        } else {
+            fallback();
+        }
+    }
+
+    // start after a brief delay to allow script tags to run
+    setTimeout(tryShow, 150);
+})();
+</script>
+{% endif %}
+
+{% if is_admin %}
+<div id="modalVeiculo" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h3>Gerenciar Veículo</h3>
+        <form id="formGerenciarVeiculo">
+            <div class="form-group">
+                <label for="statusVeiculo">Status:</label>
+                <select id="statusVeiculo" name="status" required>
+                    <option value="disponível">Disponível</option>
+                    <option value="alugado">Alugado</option>
+                    <option value="manutenção">Em Manutenção</option>
+                </select>
+            </div>
+            <button type="submit" class="btn-primary">Salvar</button>
+        </form>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

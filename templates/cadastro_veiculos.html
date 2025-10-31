@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+{% block title %}Cadastro de Veículos{% endblock %}
+{% block content %}
+<div class="vehicle-container">
+    <h2>Cadastro de Veículos</h2>
+    <form id="formVeiculo" class="vehicle-form">
+        <div class="form-group">
+            <label for="marca">Marca:</label>
+            <input type="text" id="marca" name="marca" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="modelo">Modelo:</label>
+            <input type="text" id="modelo" name="modelo" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="ano">Ano:</label>
+            <input type="number" id="ano" name="ano" min="1900" max="2025" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="placa">Placa:</label>
+            <input type="text" id="placa" name="placa" pattern="[A-Z]{3}[0-9]{4}" title="Formato: ABC1234" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="preco_diaria">Preço da Diária (R$):</label>
+            <input type="number" id="preco_diaria" name="preco_diaria" min="0" step="0.01" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="foto">URL da Foto:</label>
+            <input type="url" id="foto" name="foto" class="input-large" placeholder="http://..." style="width: 100%;">
+            <span class="help-text">Cole aqui o link da imagem do veículo (tamanho recomendado: 800x600px)</span>
+        </div>
+
+        <!-- Preview da Imagem -->
+        <div id="previewContainer" class="preview-container" style="display: none;">
+            <h3>Preview da Imagem</h3>
+            <img id="imagePreview" alt="Preview">
+        </div>
+        
+        <div class="form-group">
+            <label for="condicao">Condição do Veículo:</label>
+            <select id="condicao" name="condicao" required>
+                <option value="novo">Novo</option>
+                <option value="semi-novo">Semi-novo</option>
+                <option value="usado">Usado</option>
+            </select>
+        </div>
+        
+        <button type="submit" class="btn-primary">Cadastrar Veículo</button>
+    </form>
+
+    <div id="mensagem" class="mensagem"></div>
+
+    <h3>Veículos Cadastrados</h3>
+    <div style="margin-bottom:12px;">
+        <button id="btnShowAll" class="btn-secondary">Mostrar Todos</button>
+        <button id="btnShowMine" class="btn-primary">Meus Veículos</button>
+    </div>
+    <div id="veiculosList" class="vehicles-list"></div>
+
+    <h3>Meus Veículos</h3>
+    <div id="meusVeiculosList" class="vehicles-list"></div>
+</div>
+
+<style>
+.input-large {
+    font-size: 16px;
+    padding: 12px;
+    min-height: 48px;
+}
+
+.help-text {
+    display: block;
+    font-size: 0.85em;
+    color: #666;
+    margin-top: 4px;
+}
+
+.preview-container {
+    margin: 20px 0;
+    padding: 20px;
+    border: 2px dashed #ddd;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.preview-container img {
+    max-width: 100%;
+    height: 300px;
+    object-fit: contain;
+    border-radius: 8px;
+}
+</style>
+
+<script>
+// Preview da imagem
+document.getElementById('foto').addEventListener('input', function(e) {
+    const url = e.target.value;
+    const preview = document.getElementById('imagePreview');
+    const container = document.getElementById('previewContainer');
+    
+    if (url) {
+        preview.src = url;
+        preview.onload = function() {
+            container.style.display = 'block';
+        }
+        preview.onerror = function() {
+            container.style.display = 'none';
+            alert('Erro ao carregar imagem. Verifique a URL.');
+        }
+    } else {
+        container.style.display = 'none';
+    }
+});
+</script>
+{% endblock %}
