@@ -1,0 +1,19 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+{% extends "base.html" %}
+{% block title %}Veículos - LocaCar{% endblock %}
+{% block content %}
+<h2>Carros Disponíveis</h2>
+{% if veiculos %}
+  <ul>
+    {% for v in veiculos %}
+      <li>
+        <strong>{{ v.marca }} {{ v.modelo }}</strong> — {{ v.ano }} — {{ v.placa }}
+        {% if v.preco_diaria %} — R$ {{ "%.2f"|format(v.preco_diaria) }} /dia{% endif %}
+        <a href="{{ url_for('veiculos.painel_frota') if is_admin else url_for('veiculos.listar_veiculos') }}">Detalhes</a>
+      </li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>Nenhum veículo encontrado.</p>
+{% endif %}
+{% endblock %}

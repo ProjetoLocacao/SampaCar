@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 {% extends "base.html" %}
 {% block title %}Painel da Frota{% endblock %}
 {% block content %}
@@ -31,7 +32,7 @@
     <div class="access-denied-content">
         <h2>Acesso Restrito</h2>
         <p>Desculpe, esta área é reservada apenas para administradores.</p>
-        <a href="{{ url_for('home') }}" class="btn btn-primary">Voltar para Home</a>
+        <a href="{{ url_for('main.home') }}" class="btn btn-primary">Voltar para Home</a>
     </div>
 </div>
 

@@ -1,52 +1,50 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <title>{% block title %}LocaCar{% endblock %}</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>{% block title %}LocaCar{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    <!-- Cabeçalho -->
-    <header>
-        <h1 class="logo">LocaCar</h1>
-        <nav>
-            <ul>
-                <li><a href="{{ url_for('home') }}">Home</a></li>
-                <li><a href="{{ url_for('cadastro_veiculos') }}">Veículos</a></li>
-                <li><a href="{{ url_for('minhas_reservas') }}">Minhas Reservas</a></li>
-                <li><a href="{{ url_for('painel_frota') }}">Painel da Frota</a></li>
-                <li><a href="{{ url_for('contato') }}">Contato</a></li>
-                <li><a href="{{ url_for('sobre') }}">Sobre</a></li>
-                <li><a href="{{ url_for('faq') }}">Perguntas Frequentes</a></li>
-                <li><a href="{{ url_for('perfil') }}">Perfil</a></li>
-            </ul>
-        </nav>
-        <div class="user-info">
-            {% if session.usuario_nome %}
-                <span id="username">Olá, {{ session.usuario_nome }}</span>
-                <a href="{{ url_for('logout') }}" class="btn-logout">Sair</a>
-            {% else %}
-                <a href="{{ url_for('login') }}" class="btn-login">Entrar</a>
-            {% endif %}
-        </div>
-    </header>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="{{ url_for('main.home') }}">Home</a></li>
+        <li><a href="{{ url_for('veiculos.listar_veiculos') }}">Veículos</a></li>
+        {% if is_admin %}
+          <li><a href="{{ url_for('veiculos.painel_frota') }}">Painel de frota</a></li>
+        {% endif %}
+        {% if current_user %}
+          <li><a href="{{ url_for('reservas.minhas') }}">Minhas reservas</a></li>
+        {% endif %}
+      </ul>
 
-    <!-- Conteúdo dinâmico -->
-    <main>
-        {% block content %}{% endblock %}
-    </main>
+      <div style="float:right">
+        {% if current_user %}
+          <span>Olá, {{ current_user.nome }}</span>
+          <form action="{{ url_for('auth.logout') }}" method="post" style="display:inline">
+            <button type="submit">Sair</button>
+          </form>
+        {% else %}
+          <a href="{{ url_for('auth.login') }}">Login</a>
+        {% endif %}
+      </div>
+    </nav>
+  </header>
 
-    <!-- Rodapé -->
-    <footer>
-        <p>© 2025 LocaCar - Todos os direitos reservados.</p>
-    </footer>
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <ul class="flashes">
+        {% for category, msg in messages %}
+          <li class="{{ category }}">{{ msg }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
 
-    <script>
-        window.CURRENT_USER = {
-            id: {{ session.get('usuario_id') if session.get('usuario_id') else 'null' }},
-            is_admin: {{ 'true' if session.get('usuario_tipo') == 'admin' else 'false' }}
-        };
-    </script>
-    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+  <main>
+    {% block content %}{% endblock %}
+  </main>
 </body>
 </html>

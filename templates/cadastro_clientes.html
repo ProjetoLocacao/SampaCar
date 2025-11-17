@@ -2,6 +2,9 @@
 {% extends "base.html" %}
 {% block title %}Cadastro de Clientes{% endblock %}
 {% block content %}
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
 <h2>Cadastro de Clientes</h2>
 <form id="formCliente">
     <label>Nome: <input type="text" name="nome" required></label><br>

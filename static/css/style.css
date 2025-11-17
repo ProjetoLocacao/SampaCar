@@ -845,3 +845,45 @@ footer {
         opacity: 1;
     }
 }
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    color: #111;
+    background: #fff;
+}
+
+header nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 10px 0;
+    display: flex;
+    gap: 10px;
+}
+
+header nav ul li {
+    display: inline;
+}
+
+a {
+    color: #0066cc;
+    text-decoration: none;
+}
+
+.flashes {
+    margin: 10px 0;
+    padding: 0;
+    list-style: none;
+}
+
+.flashes li {
+    padding: 6px;
+    border-radius: 4px;
+    margin-bottom: 6px;
+}
+
+.flashes .warning {
+    background: #fff3cd;
+    color: #665200;
+    border: 1px solid #ffeeba;
+}
